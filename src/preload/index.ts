@@ -3,8 +3,13 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 export const api = {
+  // 打开右键菜单
   onContextMenu: (): void => {
     ipcRenderer.send('mainPopMenu')
+  },
+  // 拖拽窗口
+  onDrag: (position: { x: number; y: number }): void => {
+    ipcRenderer.invoke('onDrag', position)
   },
 }
 

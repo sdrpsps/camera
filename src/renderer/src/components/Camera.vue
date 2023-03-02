@@ -4,9 +4,9 @@
     :class="{ 'rounded-full': config.rounded }">
     <section v-if="cameraStatus" class="text-gray-200 hidden group-hover:block z-10">
       <el-icon
-        v-if="!showSetting"
+        v-if="!config.showSetting"
         class="absolute top-1 left-1/2 -translate-x-[8px] cursor-pointer"
-        @click="showSetting = !showSetting"
+        @click="config.showSetting = !config.showSetting"
         ><Setting
       /></el-icon>
       <el-icon
@@ -19,14 +19,15 @@
       <video
         class="object-cover h-screen duration-300 ease-in-out"
         :class="{
-          blur: showSetting,
+          blur: config.showSetting,
           'rounded-full': config.rounded,
           'bg-[#2f3241]': !cameraStatus,
         }"
         :style="`border: solid ${config.borderWidth} ${config.borderColor}`"></video>
       <Transition>
-        <CameraSetting v-if="showSetting" @on-toggle-setting="onToggleSetting" />
+        <CameraSetting v-if="config.showSetting" />
       </Transition>
+      <Drag />
     </main>
   </section>
 </template>
@@ -36,6 +37,7 @@ import { ElMessage } from 'element-plus'
 import { onMounted, ref } from 'vue'
 import useConfigStore from '../store/useConfigStore'
 import CameraSetting from './CameraSetting.vue'
+import Drag from './Drag.vue'
 
 onMounted(() => {
   const video = document.querySelector('video')!
@@ -53,10 +55,8 @@ onMounted(() => {
       console.error(error)
     })
 })
+// 摄像头可用状态
 const cameraStatus = ref<boolean>(false)
-
-// 参数设置显示
-const showSetting = ref<boolean>(false)
 
 // 摄像头参数
 const { config } = useConfigStore()
@@ -64,11 +64,6 @@ const constraints = ref({
   video: { deviceId: config.deviceId },
   audio: false,
 })
-
-// 关闭设置窗口
-const onToggleSetting = (): void => {
-  showSetting.value = false
-}
 </script>
 
 <style scoped lang="less">

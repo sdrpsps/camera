@@ -35,9 +35,8 @@ const devices = await navigator.mediaDevices.enumerateDevices()
 const cameras = devices.filter((item) => item.kind === 'videoinput')
 
 // 点击关闭图标时
-const emit = defineEmits(['on-toggle-setting'])
 const toggleSetting = (): void => {
-  emit('on-toggle-setting', false)
+  config.showSetting = false
 }
 </script>
 

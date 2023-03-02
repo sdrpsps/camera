@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import Camera from './components/Camera.vue'
+// import useDrag from './composables/useDrag'
+
+onMounted(() => {
+  // 拖拽窗口
+  // const { drag } = useDrag()
+  // drag.run()
+})
 
 const onContextMenu = (): void => {
   window.api.onContextMenu()

@@ -5,6 +5,7 @@ const useConfigStore = defineStore(
   'config',
   () => {
     const config = ref({
+      showSetting: false,
       rounded: false,
       deviceId: '',
       borderWidth: '3px',

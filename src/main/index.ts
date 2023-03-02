@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './menu'
 import './contextMenu'
+import drag from './drag'
 
 function createWindow(): void {
   // Create the browser window.
@@ -25,13 +26,14 @@ function createWindow(): void {
       sandbox: false,
     },
   })
-
+  drag(mainWindow)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
 
   // 等比例拖动
   mainWindow.setAspectRatio(1)
+  if (is.dev) mainWindow.webContents.openDevTools()
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
