@@ -1,5 +1,5 @@
 appId: icu.hchow.camera
-productName: 做来玩的摄像头软件
+productName: Playground Camera
 directories:
   buildResources: build
 files:
@@ -20,11 +20,14 @@ nsis:
   createDesktopShortcut: always
 mac:
   entitlementsInherit: build/entitlements.mac.plist
+  hardenedRuntime: true
   extendInfo:
     - NSCameraUsageDescription: Application requests access to the device's camera.
     - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+    - com.apple.security.device.audio-input: true
+    - com.apple.security.device.camera: true
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
