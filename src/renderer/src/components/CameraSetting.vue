@@ -1,5 +1,5 @@
 <template>
-  <section class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-5">
+  <section class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] p-5">
     <main>
       <section class="mb-5 flex justify-between items-center text-gray-300">
         <h2>参数设置</h2>
@@ -11,6 +11,12 @@
             <el-select v-model="config.deviceId" placeholder="选择摄像头" clearable>
               <el-option v-for="item in cameras" :key="item.deviceId" :label="item.label" :value="item.deviceId" />
             </el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="config.borderWidth" placeholder="请输入边框宽度,默认3px"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="config.borderColor" placeholder="请输入边框颜色,默认白色"></el-input>
           </el-form-item>
         </el-form>
       </section>

@@ -18,7 +18,12 @@
     <main>
       <video
         class="object-cover h-screen duration-300 ease-in-out"
-        :class="{ blur: showSetting, 'rounded-full': config.rounded, 'bg-[#2f3241]': !cameraStatus }"></video>
+        :class="{
+          blur: showSetting,
+          'rounded-full': config.rounded,
+          'bg-[#2f3241]': !cameraStatus,
+        }"
+        :style="`border: solid ${config.borderWidth} ${config.borderColor}`"></video>
       <Transition>
         <CameraSetting v-if="showSetting" @on-toggle-setting="onToggleSetting" />
       </Transition>
@@ -44,8 +49,8 @@ onMounted(() => {
     })
     .catch((error) => {
       cameraStatus.value = false
-      ElMessage.error({ message: '找不到摄像头', duration: 0 })
-      console.log(error)
+      ElMessage.error({ message: '找不到摄像头', duration: 0, center: true, offset: 40 })
+      console.error(error)
     })
 })
 const cameraStatus = ref<boolean>(false)
