@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!config.showSetting" class="drag absolute top-[13%] left-[13%] z-10 h-[75%] w-[75%] bg-transparent"></div>
+  <div v-if="!config.showSetting" class="drag absolute top-[18%] left-[18%] z-10 h-[65%] w-[65%] bg-transparent"></div>
 </template>
 
 <script setup lang="ts">

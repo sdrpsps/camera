@@ -5,12 +5,12 @@
     <section v-if="cameraStatus" class="text-gray-200 hidden group-hover:block z-10">
       <el-icon
         v-if="!config.showSetting"
-        class="absolute top-1 left-1/2 -translate-x-[8px] cursor-pointer"
+        class="absolute text-2xl top-2 left-1/2 -translate-x-[0.75rem] cursor-pointer"
         @click="config.showSetting = !config.showSetting"
         ><Setting
       /></el-icon>
       <el-icon
-        class="absolute bottom-1 left-1/2 -translate-x-[8px] cursor-pointer"
+        class="absolute text-2xl bottom-2 left-1/2 -translate-x-[0.75rem] cursor-pointer"
         @click="config.rounded = !config.rounded"
         ><Baseball
       /></el-icon>
@@ -21,6 +21,7 @@
         :class="{
           blur: config.showSetting,
           'rounded-full': config.rounded,
+          'rounded-xl': !config.rounded,
           'bg-[#2f3241]': !cameraStatus,
         }"
         :style="`border: solid ${config.borderWidth} ${config.borderColor}`"></video>
