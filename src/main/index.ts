@@ -4,7 +4,8 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import './menu'
 import './contextMenu'
-import drag from './drag'
+import createTray from './tray'
+// import drag from './drag'
 
 function createWindow(): void {
   // Create the browser window.
@@ -20,13 +21,14 @@ function createWindow(): void {
     show: false,
     alwaysOnTop: true,
     autoHideMenuBar: true,
+    skipTaskbar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
     },
   })
-  drag(mainWindow)
+  // drag(mainWindow)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -64,6 +66,10 @@ app.whenReady().then(() => {
   })
 
   createWindow()
+  // 托盘图标
+  createTray()
+  // 隐藏 docker 图标
+  app.dock.hide()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
